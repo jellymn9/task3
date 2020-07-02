@@ -11,8 +11,10 @@ export const store = new Vuex.Store({
     },
     getters:{
         //for instance changing store.somedata
+
     },
     mutations:{ //for better debugging istead of using getters...
         //function for instance reducePrice
+        
     }
 })

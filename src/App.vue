@@ -2,13 +2,13 @@
   <div id="app">
     <div id="addInvoiceForm">
       <label for="idInvoiceNumber">Invoice number:</label>
-      <input type="number" id="idInvoiceNumber">
+      <input type="number" id="idInvoiceNumber" ref="numberf">
       <label for="idDescription">Description:</label>
-      <input type="text" id="idDescription">
+      <input type="text" id="idDescription" ref="descriptionf">
       <label for="idDate">Date:</label>
-      <input type="date" id="idDate">
+      <input type="date" id="idDate" ref="datef">
       <label for="idAmount">Amount:</label>
-      <input type="number" id="idAmount">
+      <input type="number" id="idAmount" ref="amountf">
       <button id="idAddInvoiceBtn" v-on:click="makeList">Add Invoice</button>
       <list></list>
     </div>
@@ -24,17 +24,29 @@ class listClass {
     this.date = date;
     this.amount = amount;
   }
+  get getNumber(){
+    return this.invoiceNum;
+  }
+  get getDescription(){
+    return this.description;
+  }
+  get getDate(){
+    return this.date;
+  }
+  get getAmount(){
+    return this.amount;
+  }
   //consider to add methodes for deleting and copy items..
 }
 
 export default {
-  name: 'App',
-  data(){
-    return{
-      iE: document.getElementById("idInvoiceNumber"),
-      inputEls: document.getElementsByTagName("input")
+  //name: 'App',
+  data: function(){
+     return{
+    //   iE: document.getElementById("idInvoiceNumber"),
+    //   inputEls: document.getElementsByTagName("input")
      
-    }
+     }
   },
   computed:{
     
@@ -42,10 +54,11 @@ export default {
   methods:{
     //some function iside ---this.$store.commit('reducePrice')
     makeList(){
-      console.log(iE);
-      this.$store.state.invoiceList.push(new listClass(inputEls[0].value,inputEls[1].value,inputEls[2].value,inputEls[3].value));
-      console.log(this.$store.state.invoiceList);
+      //console.log(this.$refs.numberf.value);
+      this.$store.state.invoiceList.push(new listClass(this.$refs.numberf.value,this.$refs.descriptionf.value,this.$refs.datef.value,this.$refs.amountf.value));
+      console.log(this.$store.state.invoiceList[0].getNumber);
     }
+    
   }
 }
 </script>
