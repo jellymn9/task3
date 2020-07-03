@@ -3,7 +3,7 @@
       
       <h3>Invoice List</h3>
       <label for="idSearch">Search:</label>
-      <input type="number" id="idSearch" >
+      <input type="number" id="idSearch"  v-on:input="test">
       <ul id="listId">
         
           <li v-for="invoice in this.$store.state.invoiceList" > 
@@ -23,9 +23,10 @@ export default {
    }
   },
   methods:{
-    // test(){
-    //   console.log(this.$store.state.invoiceList[0].getNumber);
-    // }
+    test(){
+      console.log("something is in there");
+      //console.log(this.$store.state.invoiceList[0].getNumber);
+    }
   }
 }
 </script>

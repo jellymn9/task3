@@ -11,6 +11,18 @@ export const store = new Vuex.Store({
     },
     getters:{
         //for instance changing store.somedata
+        // debounce(f, delay){
+        //     let timeoutID;
+        //     return (...args)=>{
+        //         if(timeoutID){
+        //             clearTimeout(timeoutID);
+        //         }
+        //         timeoutID = setTimeout( () =>{
+        //             f(...args);
+        //         }, delay);
+        //     };
+        // }
+        
 
     },
     mutations:{ //for better debugging istead of using getters...
