@@ -57,6 +57,7 @@ export default {
       //console.log(this.$refs.numberf.value);
       this.$store.state.invoiceList.push(new listClass(this.$refs.numberf.value,this.$refs.descriptionf.value,this.$refs.datef.value,this.$refs.amountf.value));
       console.log(this.$store.state.invoiceList[0].getNumber);
+      this.$store.getters.findM;
     }
     
   }
