@@ -3,7 +3,7 @@
       
       <h3>Invoice List</h3>
       <label for="idSearch">Search:</label>
-      <input type="number" id="idSearch"  v-on:input="findMatch" ref="searchInput">
+      <input type="number" id="idSearch"  v-on:input="debounce(findMatch, 2000)" ref="searchInput">
       <ul id="listId">
           <div >
             
@@ -24,7 +24,7 @@ export default {
       // tables:['jjj','vvvv','kkkk']
       pshow: true,
       val:'',
-      //timeOutID: 0
+      timeOutID: 0
    }
   },
   methods:{
@@ -38,43 +38,34 @@ export default {
       this.pshow = true;
       this.$store.state.invoiceList.filter((invoice)=>{ 
         //this.pshow = false;
-        console.log(this);
+        console.log("before match");
         if(invoice.getNumber == this.$refs.searchInput.value){
           this.val = ` ${invoice.getNumber} . -description: ${invoice.getDescription}`;
           this.$refs.matchElement.value = this.val;
           this.pshow = false;
           console.log("match is theree");
-          console.log(this);
-          console.log(this.$refs.matchElement.value);
+          //console.log(this);
+          //console.log(this.$refs.matchElement.value);
 
         }
       })
     },
-    debounce(f){
-        let timeOutID;
-        if(timeOutID){
-          clearTimeout(timeOutID);
+    //this works, but check if it really has a meaning of debouce asynchronous function
+    debounce(f, delay){
+        //let timeOutID;
+        console.log(this.timeOutID);
+        if(this.timeOutID){
+          clearTimeout(this.timeOutID);
+          console.log("clearing timeoutID");
         }
-        timeOutID = setTimeout(f, 3000);
-        return function(){
-          
-        }
+        this.timeOutID = setTimeout(f, delay);
+        console.log(this.timeOutID);
+        return this.timeOutID;
+        
     }
   },
   computed:{
-    // findMatch(){
-    //   //pshow = false;
-    //   this.$store.state.invoiceList.filter((invoice)=>{ /
-    //     //this.pshow = false;
-    //     console.log(this);
-    //     if(invoice.getNumber == this.$refs.searchInput.value){
-    //       //this.pshow = true;
-    //       console.log("match is theree");
-
-    //     }
-    //   })
-
-    // }
+    
   }
 }
 </script>
